@@ -1,18 +1,19 @@
-// server.js
 const express = require("express");
-const path = require("path");
+const cors = require("cors");
 const app = express();
 const port = 3000;
+const RouterHandler = require("./routes/handler");
 
-// Middleware pour servir des fichiers statiques
-app.use(express.static(path.join(__dirname, "public")));
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use("/", RouterHandler);
 
-// Routes
-app.get("/", (res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+// Exemple de route API
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello from the backend!" });
 });
 
-// Démarrer le serveur
 app.listen(port, () => {
-  console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
