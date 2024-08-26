@@ -1,10 +1,50 @@
-import { useState } from "react";
+// src/components/EditPerson.js
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import "./AddPerson.css";
-import { useNavigate } from "react-router-dom";
+import { formatDate } from "../utils/formatDate";
 
 const EditPerson = () => {
   const navigate = useNavigate();
-  const [item, setItems] = useState({});
+  const { id } = useParams();
+  const [person, setPerson] = useState({
+    FirstName: "",
+    LastName: "",
+    Quality: "",
+    birthDate: "",
+    startDate: "",
+    endDate: "",
+  });
+
+  useEffect(() => {
+    const fetchPerson = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/person/${id}`
+        );
+        setPerson(response.data);
+      } catch (error) {
+        console.error("Error fetching person data:", error);
+      }
+    };
+    fetchPerson();
+  }, [id]);
+
+  const handleChange = (e) => {
+    setPerson({ ...person, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:5000/api/persons/${id}`, person);
+      navigate("/");
+    } catch (error) {
+      console.error("Error updating person:", error);
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col justify-center py-5 sm:px-6 lg:px-8">
@@ -28,43 +68,48 @@ const EditPerson = () => {
                 </svg>
               </span>
             </button>
+
             <div className="my-3 textgrad font-bold text-3xl">
-              Modifier les infos d'une personne
+              Éditer une personne
             </div>
-            <form method="POST" action="#">
+            <form method="POST" onSubmit={handleSubmit}>
               <div>
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="nom"
+                  htmlFor="FirstName"
                 >
                   Nom
                 </label>
                 <div className="my-1">
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    required=""
-                    autoComplete="nom"
+                    required
+                    autoComplete="FirstName"
                     type="text"
-                    name="nom"
-                    id="nom"
+                    name="FirstName"
+                    id="FirstName"
+                    value={person.FirstName}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="prenom"
+                  htmlFor="LastName"
                 >
                   Prénom
                 </label>
                 <div className="my-1">
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    required=""
-                    autoComplete="prenom"
+                    required
+                    autoComplete="LastName"
                     type="text"
-                    name="prenom"
-                    id="prenom"
+                    name="LastName"
+                    id="LastName"
+                    value={person.LastName}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -72,17 +117,19 @@ const EditPerson = () => {
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="dob"
+                  htmlFor="birthDate"
                 >
                   Date de naissance
                 </label>
                 <div className="mt-1">
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    required=""
+                    required
                     type="date"
-                    name="dob"
-                    id="dob"
+                    name="birthDate"
+                    id="birthDate"
+                    value={formatDate(person.birthDate)}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -90,17 +137,19 @@ const EditPerson = () => {
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="dob"
+                  htmlFor="startDate"
                 >
-                  Date d'arrivé
+                  Date d'arrivée
                 </label>
                 <div className="mt-1">
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    required=""
+                    required
                     type="date"
-                    name="dob"
-                    id="dob"
+                    name="startDate"
+                    id="startDate"
+                    value={formatDate(person.startDate)}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -108,17 +157,19 @@ const EditPerson = () => {
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="dob"
+                  htmlFor="endDate"
                 >
-                  Date de depart
+                  Date de départ
                 </label>
                 <div className="mt-1">
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    required=""
+                    required
                     type="date"
-                    name="dob"
-                    id="dob"
+                    name="endDate"
+                    id="endDate"
+                    value={formatDate(person.endDate)}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -129,8 +180,10 @@ const EditPerson = () => {
                   <input
                     type="radio"
                     className="form-radio h-5 w-5 text-pink-600"
-                    name="gender"
+                    name="Quality"
                     value="M"
+                    checked={person.Quality === "M"}
+                    onChange={handleChange}
                   />
                   <span className="ml-2 text-gray-700">M</span>
                 </label>
@@ -138,8 +191,10 @@ const EditPerson = () => {
                   <input
                     type="radio"
                     className="form-radio h-5 w-5 text-purple-600"
-                    name="gender"
+                    name="Quality"
                     value="Mme"
+                    checked={person.Quality === "Mme"}
+                    onChange={handleChange}
                   />
                   <span className="ml-2 text-gray-700">Mme</span>
                 </label>
@@ -147,8 +202,10 @@ const EditPerson = () => {
                   <input
                     type="radio"
                     className="form-radio h-5 w-5 text-purple-600"
-                    name="gender"
+                    name="Quality"
                     value="Mlle"
+                    checked={person.Quality === "Mlle"}
+                    onChange={handleChange}
                   />
                   <span className="ml-2 text-gray-700">Mlle</span>
                 </label>

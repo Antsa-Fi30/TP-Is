@@ -1,2 +1,0 @@
-const uri =
-  "mongodb+srv://antsa30:mongo123456789@cluster0.0wd4x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";

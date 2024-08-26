@@ -1,19 +1,28 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const cors = require("cors");
+const PersonsRoute = require("./routes/PersonsRoute");
+
 const app = express();
-const port = 3000;
-const RouterHandler = require("./routes/handler");
+const port = 5000;
 
-// Middleware
 app.use(cors());
-app.use(express.json());
-app.use("/", RouterHandler);
+app.use(bodyParser.json());
 
-// Exemple de route API
-app.get("/api/hello", (req, res) => {
-  res.json({ message: "Hello from the backend!" });
+mongoose.connect(
+  "mongodb+srv://antsa30:mongo123456789@cluster0.0wd4x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+);
+
+const connection = mongoose.connection;
+
+connection.once("open", () => {
+  console.log("MongoDB database connection established successfully");
 });
 
+//Route vers l'operation CRUD de Personne
+app.use("/api", PersonsRoute);
+
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on port: ${port}`);
 });

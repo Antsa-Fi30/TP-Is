@@ -1,10 +1,33 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./AddPerson.css";
 
 const AddPerson = () => {
   const navigate = useNavigate();
-  const [item, setItems] = useState({});
+  const [person, setPerson] = useState({
+    FirstName: "",
+    LastName: "",
+    Quality: "",
+    birthDate: "",
+    startDate: "",
+    endDate: "",
+  });
+
+  const handleChange = (e) => {
+    setPerson({ ...person, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/api/persons", person);
+      navigate("/");
+    } catch (error) {
+      console.error("Error adding person:", error);
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col justify-center py-5 sm:px-6 lg:px-8">
@@ -32,11 +55,11 @@ const AddPerson = () => {
             <div className="my-3 textgrad font-bold text-3xl">
               Ajouter une personne
             </div>
-            <form method="POST" action="#">
+            <form method="POST" onSubmit={handleSubmit}>
               <div>
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="nom"
+                  htmlFor="FirstName"
                 >
                   Nom
                 </label>
@@ -44,17 +67,18 @@ const AddPerson = () => {
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required=""
-                    autoComplete="nom"
+                    autoComplete="FirstName"
                     type="text"
-                    name="nom"
-                    id="nom"
+                    name="FirstName"
+                    id="FirstName"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="prenom"
+                  htmlFor="LastName"
                 >
                   Prénom
                 </label>
@@ -62,10 +86,11 @@ const AddPerson = () => {
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required=""
-                    autoComplete="prenom"
+                    autoComplete="LastName"
                     type="text"
-                    name="prenom"
-                    id="prenom"
+                    name="LastName"
+                    id="LastName"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -73,7 +98,7 @@ const AddPerson = () => {
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="dob"
+                  htmlFor="birthDate"
                 >
                   Date de naissance
                 </label>
@@ -82,8 +107,9 @@ const AddPerson = () => {
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required=""
                     type="date"
-                    name="dob"
-                    id="dob"
+                    name="birthDate"
+                    id="birthDate"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -91,7 +117,7 @@ const AddPerson = () => {
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="dob"
+                  htmlFor="startDate"
                 >
                   Date d'arrivé
                 </label>
@@ -100,8 +126,9 @@ const AddPerson = () => {
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required=""
                     type="date"
-                    name="dob"
-                    id="dob"
+                    name="startDate"
+                    id="startDate"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -109,7 +136,7 @@ const AddPerson = () => {
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="dob"
+                  htmlFor="endDate"
                 >
                   Date de depart
                 </label>
@@ -118,8 +145,9 @@ const AddPerson = () => {
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required=""
                     type="date"
-                    name="dob"
-                    id="dob"
+                    name="endDate"
+                    id="endDate"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -130,8 +158,9 @@ const AddPerson = () => {
                   <input
                     type="radio"
                     className="form-radio h-5 w-5 text-pink-600"
-                    name="gender"
+                    name="Quality"
                     value="M"
+                    onChange={handleChange}
                   />
                   <span className="ml-2 text-gray-700">M</span>
                 </label>
@@ -139,8 +168,9 @@ const AddPerson = () => {
                   <input
                     type="radio"
                     className="form-radio h-5 w-5 text-purple-600"
-                    name="gender"
+                    name="Quality"
                     value="Mme"
+                    onChange={handleChange}
                   />
                   <span className="ml-2 text-gray-700">Mme</span>
                 </label>
@@ -148,8 +178,9 @@ const AddPerson = () => {
                   <input
                     type="radio"
                     className="form-radio h-5 w-5 text-purple-600"
-                    name="gender"
+                    name="Quality"
                     value="Mlle"
+                    onChange={handleChange}
                   />
                   <span className="ml-2 text-gray-700">Mlle</span>
                 </label>

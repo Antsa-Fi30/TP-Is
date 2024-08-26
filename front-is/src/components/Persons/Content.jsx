@@ -1,32 +1,36 @@
+/* eslint-disable react/no-unescaped-entities */
 // src/components/Table.js
-import { useState } from "react";
-import "./Content.css";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../../utils/formatDate";
+import axios from "axios";
 
-const initialData = [
-  {
-    id: 1,
-    name: "RAKOTONANDRANANDRA Alikasaka kisoaOmby henamantahenamasaka",
-    role: "20/20/20",
-  },
-  {
-    id: 2,
-    name: "RAKOTONANDRANANDRA Alikasaka kisoaOmby henamantahenamasaka",
-    role: "20/20/20",
-  },
-  {
-    id: 3,
-    name: "RAKOTONANDRANANDRA Alikasaka kisoaOmby henamantahenamasaka",
-    role: "20/20/20",
-  },
-];
+import "./Content.css";
 
 const Content = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((d) => d.id !== id));
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/persons");
+      setData(response.data);
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/persons/${id}`);
+      setData(data.filter((d) => d._id !== id));
+    } catch (error) {
+      console.error("Error deleting data:", error);
+    }
   };
 
   return (
@@ -48,22 +52,32 @@ const Content = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td className="px-2 ">{item.name}</td>
-              <td className="py-2 px-4 ">{item.role}</td>
-              <td className="py-2 px-4 ">{item.role}</td>
-              <td className="py-2 px-4 ">{item.role}</td>
-              <td className="py-2 px-4 ">{item.role}</td>
-              <td className="py-2 px-4  ">
+          {data.map((item, index) => (
+            <tr key={index}>
+              <td className="px-2 ">
+                {item.FirstName} {item.LastName}
+              </td>
+              <td className="py-2 px-4 justify-center text-center">
+                {item.Quality}
+              </td>
+              <td className="py-2 px-4 justify-center text-center">
+                {formatDate(item.birthDate)}
+              </td>
+              <td className="py-2 px-4 justify-center text-center">
+                {formatDate(item.startDate)}
+              </td>
+              <td className="py-2 px-4 justify-center text-center">
+                {formatDate(item.endDate)}
+              </td>
+              <td className="py-2 px-4 justify-center text-center">
                 <button
-                  onClick={() => navigate("/edit")}
+                  onClick={() => navigate(`/edit/${item._id}`)}
                   className="bg-yellow-500 text-white px-4 py-2 rounded-lg m-2 duration-200 transition-all hover:bg-yellow-700"
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => handleDelete(item._id)}
                   className="bg-red-500 text-white px-4 py-2 rounded-lg m-2 duration-200 transition-all hover:bg-red-700"
                 >
                   Delete
