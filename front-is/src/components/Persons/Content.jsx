@@ -36,7 +36,7 @@ const Content = () => {
   return (
     <div>
       <div className="mb-4">
-        <button id="bottone1" onClick={() => navigate("/add")}>
+        <button id="bottone1" onClick={() => navigate("/addperson")}>
           <strong>Ajouter une personne</strong>
         </button>
       </div>
@@ -71,16 +71,16 @@ const Content = () => {
               </td>
               <td className="py-2 px-4 justify-center text-center">
                 <button
-                  onClick={() => navigate(`/edit/${item._id}`)}
+                  onClick={() => navigate(`/editperson/${item._id}`)}
                   className="bg-yellow-500 text-white px-4 py-2 rounded-lg m-2 duration-200 transition-all hover:bg-yellow-700"
                 >
-                  Edit
+                  Modifier
                 </button>
                 <button
                   onClick={() => handleDelete(item._id)}
                   className="bg-red-500 text-white px-4 py-2 rounded-lg m-2 duration-200 transition-all hover:bg-red-700"
                 >
-                  Delete
+                  Supprimer
                 </button>
               </td>
             </tr>

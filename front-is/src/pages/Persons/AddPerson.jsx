@@ -22,7 +22,7 @@ const AddPerson = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/api/persons", person);
-      navigate("/");
+      navigate("/persons");
     } catch (error) {
       console.error("Error adding person:", error);
     }

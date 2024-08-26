@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./AddPerson.css";
-import { formatDate } from "../utils/formatDate";
+import { formatDate } from "../../utils/formatDate";
 
 const EditPerson = () => {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const EditPerson = () => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:5000/api/persons/${id}`, person);
-      navigate("/");
+      navigate("/persons");
     } catch (error) {
       console.error("Error updating person:", error);
     }
@@ -70,7 +70,7 @@ const EditPerson = () => {
             </button>
 
             <div className="my-3 textgrad font-bold text-3xl">
-              Éditer une personne
+              Modifier une personne
             </div>
             <form method="POST" onSubmit={handleSubmit}>
               <div>

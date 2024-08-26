@@ -1,18 +1,61 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AddPerson from "./pages/AddPerson";
-import Persons from "./pages/Persons";
-import EditPerson from "./pages/EditPerson";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import AddPerson from "./pages/Persons/AddPerson";
+import Persons from "./pages/Persons/Persons";
+import EditPerson from "./pages/Persons/EditPerson";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/add" element={<AddPerson />} />
-          <Route path="/edit/:id" element={<EditPerson />} />
-          <Route path="/" element={<Persons />} />
-        </Routes>
+        <div className="min-h-screen flex flex-col">
+          <div className="flex flex-1">
+            <aside className="bg-gray-800 text-white w-60 p-4">
+              <nav>
+                <ul>
+                  <li className="mb-2">
+                    <Link
+                      to="/"
+                      className="block py-2 px-4 rounded hover:bg-gray-700"
+                    >
+                      Tableau de bord
+                    </Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link
+                      to="/unite"
+                      className="block py-2 px-4 rounded hover:bg-gray-700"
+                    >
+                      Unite
+                    </Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link
+                      to="/persons"
+                      className="block py-2 px-4 rounded hover:bg-gray-700"
+                    >
+                      Personnes
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            </aside>
+            <main className="flex-1 p-4 bg-gray-100">
+              <h2 className="text-2xl font-semibold mb-4">Personnes</h2>
+              <div className="w-content">
+                <div className="bg-gray-100 p-4 rounded shadow">
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/editperson/:id" element={<EditPerson />} />
+                    <Route path="/addperson" element={<AddPerson />} />
+                    <Route path="/persons" element={<Persons />} />
+                  </Routes>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
       </BrowserRouter>
     </>
   );
