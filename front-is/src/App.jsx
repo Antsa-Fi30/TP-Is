@@ -10,6 +10,7 @@ import EditItem from "./pages/Items/EditItem";
 import Unite from "./pages/Unite/Unite";
 import EditUnite from "./pages/Unite/EditUnite";
 import AddUnite from "./pages/Unite/AddUnite";
+import Euler from "./components/Dashboard/Euler";
 
 const App = () => {
   return (
@@ -52,6 +53,14 @@ const App = () => {
                       Adresses
                     </Link>
                   </li>
+                  <li className="mb-2">
+                    <Link
+                      to="/graph"
+                      className="block py-2 px-4 rounded hover:bg-gray-700"
+                    >
+                      Graph
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </aside>
@@ -73,6 +82,7 @@ const App = () => {
                     <Route path="/unite" element={<Unite />} />
                     <Route path="/unite/:id" element={<EditUnite />} />
                     <Route path="/addUnite" element={<AddUnite />} />
+                    <Route path="/graph" element={<Euler />} />
                   </Routes>
                 </div>
               </div>
