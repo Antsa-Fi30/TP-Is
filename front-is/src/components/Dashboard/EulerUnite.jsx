@@ -17,7 +17,7 @@ const EulerUnite = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/unites");
+      const response = await axios.get("http://localhost:5000/api/persons");
       setData(response.data);
     } catch (error) {
       console.error(error.response ? error.response.data : error.message);
@@ -26,8 +26,6 @@ const EulerUnite = () => {
 
   const nummberOfUnity = data.length;
 
-  console.log(nummberOfUnity);
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -35,13 +33,12 @@ const EulerUnite = () => {
   const t0 = 0;
   const P0 = 0;
   const n = 10;
-  const a = 0;
-  const b = 1;
+  const h = 0.5;
 
   const recrutement = (t) => nummberOfUnity;
-  const depart = (t) => 3;
+  const depart = (t) => 0;
 
-  const resultats = euler(t0, P0, a, b, n, recrutement, depart);
+  const resultats = euler(t0, P0, h, n, recrutement, depart);
 
   return (
     <ResponsiveContainer width="100%" height={400}>
@@ -51,7 +48,7 @@ const EulerUnite = () => {
           dataKey="t"
           label={{ value: "Time", position: "insideBottomRight", offset: 0 }}
         />
-        <YAxis label={{ value: "Unite", angle: -90, position: "insideLeft" }} />
+        <YAxis label={{ value: "Person", angle: -90, position: "insideLeft" }} />
         <Tooltip />
         <Legend />
         <Line
