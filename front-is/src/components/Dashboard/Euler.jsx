@@ -5,7 +5,7 @@ import { euler } from '../../utils/eulerAlgo';
 const Euler = () => {
   const t0 = 0;
   const P0 = 0;
-  const n = 5;
+  const n = 10;
   const a = 0;
   const b = 1;
 
