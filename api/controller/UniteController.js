@@ -21,9 +21,9 @@ exports.getAllUnites = async (req, res) => {
 
 exports.getOneUnite = async (req, res) => {
   try {
-    const Unite = await Unite.findById(req.params.id);
-    if (!Unite) return res.status(404).json({ message: "Unite not found" });
-    res.json(Unite);
+    const uniteId = await Unite.findById(req.params.id);
+    if (!uniteId) return res.status(404).json({ message: "Unite not found" });
+    res.json(uniteId);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -31,11 +31,16 @@ exports.getOneUnite = async (req, res) => {
 
 exports.updateUnite = async (req, res) => {
   try {
-    const Unite = await Unite.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (!Unite) return res.status(404).json({ message: "Unite not found" });
-    res.json(Unite);
+    const updatedUnite = await Unite.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    if (!updatedUnite)
+      return res.status(404).json({ message: "Unite not found" });
+    res.json(updatedUnite);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -43,8 +48,9 @@ exports.updateUnite = async (req, res) => {
 
 exports.deleteUnite = async (req, res) => {
   try {
-    const Unite = await Unite.findByIdAndDelete(req.params.id);
-    if (!Unite) return res.status(404).json({ message: "Unite not found" });
+    const deletedUnite = await Unite.findByIdAndDelete(req.params.id);
+    if (!deletedUnite)
+      return res.status(404).json({ message: "Unite not found" });
     res.json({ message: "Unite deleted" });
   } catch (err) {
     res.status(400).json({ message: err.message });

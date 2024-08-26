@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./AddUnite.css";
+import { formatDate } from "../../utils/formatDate";
 
 const EditUnite = () => {
   const navigate = useNavigate();
@@ -131,7 +132,7 @@ const EditUnite = () => {
                     type="date"
                     name="propDate"
                     id="propDate"
-                    value={Unite.propDate}
+                    value={formatDate(Unite.propDate)}
                     onChange={handleChange}
                   />
                 </div>
@@ -151,7 +152,7 @@ const EditUnite = () => {
                     type="date"
                     name="createdDate"
                     id="createdDate"
-                    value={Unite.createdDate}
+                    value={formatDate(Unite.createdDate)}
                     onChange={handleChange}
                   />
                 </div>
@@ -171,7 +172,7 @@ const EditUnite = () => {
                     type="date"
                     name="closeDate"
                     id="closeDate"
-                    value={Unite.closeDate}
+                    value={formatDate(Unite.closeDate)}
                     onChange={handleChange}
                   />
                 </div>

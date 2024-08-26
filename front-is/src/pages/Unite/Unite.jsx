@@ -28,7 +28,7 @@ const Unite = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/unite/${id}`);
+      await axios.delete(`http://localhost:5000/api/deleteunite/${id}`);
       setData(data.filter((d) => d._id !== id));
     } catch (error) {
       console.error("Error deleting data:", error);
