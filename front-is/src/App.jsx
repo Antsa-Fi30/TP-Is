@@ -80,7 +80,7 @@ const App = () => {
                     <Route path="/addItem" element={<ItemForm />} />
                     {/* Unite */}
                     <Route path="/unite" element={<Unite />} />
-                    <Route path="/unite/:id" element={<EditUnite />} />
+                    <Route path="/editUnite/:id" element={<EditUnite />} />
                     <Route path="/addUnite" element={<AddUnite />} />
                     <Route path="/graph" element={<Euler />} />
                   </Routes>
