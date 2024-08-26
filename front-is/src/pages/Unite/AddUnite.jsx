@@ -141,7 +141,7 @@ const AddUnite = () => {
                   className="block text-sm font-medium text-gray-700"
                   htmlFor="closeDate"
                 >
-                  Date de fermature
+                  Date de fermeture
                 </label>
                 <div className="mt-1">
                   <input

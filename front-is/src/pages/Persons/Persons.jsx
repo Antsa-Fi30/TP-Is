@@ -60,9 +60,9 @@ const Persons = () => {
           <tr>
             <th className="py-2 px-4 ">Nom</th>
             <th className="py-2 px-4 ">Qualité</th>
-            <th className="py-2 px-4 ">Date de naissance</th>
-            <th className="py-2 px-4 ">Date de départ</th>
-            <th className="py-2 px-4 ">Date d'arrivé</th>
+            <th className="py-2 px-4 ">Date de naissance(année,mois,jour)</th>
+            <th className="py-2 px-4 ">Date de départ(année,mois,jour)</th>
+            <th className="py-2 px-4 ">Date d'arrivé(année,mois,jour)</th>
             <th className="py-2 px-4 ">Action</th>
           </tr>
         </thead>

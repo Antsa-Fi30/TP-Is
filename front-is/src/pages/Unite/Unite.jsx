@@ -52,7 +52,7 @@ const Persons = () => {
     <div>
       <div className="mb-4">
         <button id="bottone1" onClick={() => navigate("/addUnite")}>
-          <strong>Ajouter une personne</strong>
+          <strong>Ajouter une unité</strong>
         </button>
       </div>
       <table className="min-w-full bg-transparent rounded-">
@@ -60,9 +60,9 @@ const Persons = () => {
           <tr>
             <th className="py-2 px-4 ">Numero</th>
             <th className="py-2 px-4 ">Intitulé</th>
-            <th className="py-2 px-4 ">Date de propostion</th>
-            <th className="py-2 px-4 ">Date de création</th>
-            <th className="py-2 px-4 ">Date de départ</th>
+            <th className="py-2 px-4 ">Date de propostion(année,mois,jour)</th>
+            <th className="py-2 px-4 ">Date de création(année,mois,jour)</th>
+            <th className="py-2 px-4 ">Date de départ(année,mois,jour)</th>
             <th className="py-2 px-4 ">Action</th>
           </tr>
         </thead>
@@ -84,13 +84,13 @@ const Persons = () => {
               </td>
               <td className="py-2 px-4 justify-center text-center">
                 <button
-                  onClick={() => navigate(`/editperson/${item._id}`)}
+                  onClick={() => navigate(`/editUnite/${item._id}`)}
                   className="bg-yellow-500 text-white px-4 py-2 rounded-lg m-2 duration-200 transition-all hover:bg-yellow-700"
                 >
                   Modifier
                 </button>
                 <button
-                  onClick={() => handleDelete(item._id)}
+                  onClick={() => handleDelete(item.id)}
                   className="bg-red-500 text-white px-4 py-2 rounded-lg m-2 duration-200 transition-all hover:bg-red-700"
                 >
                   Supprimer
