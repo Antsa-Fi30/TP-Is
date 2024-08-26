@@ -38,7 +38,7 @@ const EulerUnite = () => {
   const a = 0;
   const b = 1;
 
-  const recrutement = (t) => 5;
+  const recrutement = (t) => nummberOfUnity;
   const depart = (t) => 3;
 
   const resultats = euler(t0, P0, a, b, n, recrutement, depart);
