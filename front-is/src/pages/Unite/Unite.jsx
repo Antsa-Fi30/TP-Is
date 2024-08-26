@@ -90,7 +90,7 @@ const Unite = () => {
                   Modifier
                 </button>
                 <button
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => handleDelete(item._id)}
                   className="bg-red-500 text-white px-4 py-2 rounded-lg m-2 duration-200 transition-all hover:bg-red-700"
                 >
                   Supprimer
