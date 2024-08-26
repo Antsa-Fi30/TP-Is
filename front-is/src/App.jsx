@@ -10,7 +10,7 @@ import EditItem from "./pages/Items/EditItem";
 import Unite from "./pages/Unite/Unite";
 import EditUnite from "./pages/Unite/EditUnite";
 import AddUnite from "./pages/Unite/AddUnite";
-import Euler from "./components/Dashboard/EulerUnite";
+import Euler from "./components/Dashboard/EulerPersons";
 
 const App = () => {
   return (

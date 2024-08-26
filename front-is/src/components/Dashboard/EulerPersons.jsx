@@ -12,12 +12,12 @@ import { euler } from "../../utils/eulerAlgo";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const EulerUnite = () => {
+const EulerPersons = () => {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/unite");
+      const response = await axios.get("http://localhost:5000/api/persons");
       setData(response.data);
     } catch (error) {
       console.error(error.response ? error.response.data : error.message);
@@ -48,7 +48,9 @@ const EulerUnite = () => {
           dataKey="t"
           label={{ value: "Time", position: "insideBottomRight", offset: 0 }}
         />
-        <YAxis label={{ value: "Unite", angle: -90, position: "insideLeft" }} />
+        <YAxis
+          label={{ value: "Person", angle: -90, position: "insideLeft" }}
+        />
         <Tooltip />
         <Legend />
         <Line
@@ -62,4 +64,4 @@ const EulerUnite = () => {
   );
 };
 
-export default EulerUnite;
+export default EulerPersons;
