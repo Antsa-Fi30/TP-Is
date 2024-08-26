@@ -46,7 +46,7 @@ const App = () => {
                       to="/items"
                       className="block py-2 px-4 rounded hover:bg-gray-700"
                     >
-                      Adresses(ou ???)
+                      Adresses
                     </Link>
                   </li>
                 </ul>
