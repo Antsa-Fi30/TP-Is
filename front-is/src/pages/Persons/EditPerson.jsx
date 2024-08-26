@@ -24,6 +24,7 @@ const EditPerson = () => {
           `http://localhost:5000/api/person/${id}`
         );
         setPerson(response.data);
+        console.log();
       } catch (error) {
         console.error("Error fetching person data:", error);
       }

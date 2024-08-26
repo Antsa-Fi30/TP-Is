@@ -41,7 +41,7 @@ const EditUnite = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/unite", Unite);
+      await axios.put("http://localhost:5000/api/unite", Unite);
       navigate("/unite");
     } catch (error) {
       console.error("Error adding Unite:", error);

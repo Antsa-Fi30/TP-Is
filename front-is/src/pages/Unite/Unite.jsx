@@ -6,7 +6,7 @@ import axios from "axios";
 
 import "./Unite.css";
 
-const Persons = () => {
+const Unite = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -104,4 +104,4 @@ const Persons = () => {
   );
 };
 
-export default Persons;
+export default Unite;
