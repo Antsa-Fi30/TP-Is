@@ -7,6 +7,9 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import ItemList from "./pages/Items/ItemList";
 import ItemForm from "./pages/Items/ItemForm";
 import EditItem from "./pages/Items/EditItem";
+import Unite from "./pages/Unite/Unite";
+import EditUnite from "./pages/Unite/EditUnite";
+import AddUnite from "./pages/Unite/AddUnite";
 
 const App = () => {
   return (
@@ -57,13 +60,19 @@ const App = () => {
               <div className="w-content">
                 <div className="bg-gray-100 p-4 rounded shadow">
                   <Routes>
+                    {/* Persons */}
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/editperson/:id" element={<EditPerson />} />
                     <Route path="/addperson" element={<AddPerson />} />
                     <Route path="/persons" element={<Persons />} />
+                    {/* Adresse */}
                     <Route path="/items" element={<ItemList />} />
                     <Route path="/editItem/:id" element={<EditItem />} />
                     <Route path="/addItem" element={<ItemForm />} />
+                    {/* Unite */}
+                    <Route path="/unite" element={<Unite />} />
+                    <Route path="/unite/:id" element={<EditUnite />} />
+                    <Route path="/addUnite" element={<AddUnite />} />
                   </Routes>
                 </div>
               </div>

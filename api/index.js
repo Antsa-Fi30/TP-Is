@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const PersonsRoute = require("./routes/PersonsRoute");
 const ItemsRoute = require("./routes/itemsRoute");
+const UniteRoute = require("./routes/UniteRoute");
 
 const app = express();
 const port = 5000;
@@ -26,6 +27,9 @@ app.use("/api", PersonsRoute);
 
 //Route vers Item
 app.use("/api", ItemsRoute);
+
+//Route vers Unite
+app.use("/api", UniteRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
