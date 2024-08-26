@@ -4,6 +4,9 @@ import AddPerson from "./pages/Persons/AddPerson";
 import Persons from "./pages/Persons/Persons";
 import EditPerson from "./pages/Persons/EditPerson";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import ItemList from "./pages/Items/ItemList";
+import ItemForm from "./pages/Items/ItemForm";
+import EditItem from "./pages/Items/EditItem";
 
 const App = () => {
   return (
@@ -38,11 +41,19 @@ const App = () => {
                       Personnes
                     </Link>
                   </li>
+                  <li className="mb-2">
+                    <Link
+                      to="/items"
+                      className="block py-2 px-4 rounded hover:bg-gray-700"
+                    >
+                      Adresses(ou ???)
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </aside>
             <main className="flex-1 p-4 bg-gray-100">
-              <h2 className="text-2xl font-semibold mb-4">Personnes</h2>
+              {/* <h2 className="text-2xl font-semibold mb-4">{}</h2> */}
               <div className="w-content">
                 <div className="bg-gray-100 p-4 rounded shadow">
                   <Routes>
@@ -50,6 +61,9 @@ const App = () => {
                     <Route path="/editperson/:id" element={<EditPerson />} />
                     <Route path="/addperson" element={<AddPerson />} />
                     <Route path="/persons" element={<Persons />} />
+                    <Route path="/items" element={<ItemList />} />
+                    <Route path="/editItem/:id" element={<EditItem />} />
+                    <Route path="/addItem" element={<ItemForm />} />
                   </Routes>
                 </div>
               </div>

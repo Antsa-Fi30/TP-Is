@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const PersonsRoute = require("./routes/PersonsRoute");
+const ItemsRoute = require("./routes/itemsRoute");
 
 const app = express();
 const port = 5000;
@@ -22,6 +23,9 @@ connection.once("open", () => {
 
 //Route vers l'operation CRUD de Personne
 app.use("/api", PersonsRoute);
+
+//Route vers Item
+app.use("/api", ItemsRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
