@@ -25,7 +25,7 @@ const ItemList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/items/${id}`);
+      await axios.delete(`http://localhost:5000/api/item/${id}`);
       setData(data.filter((d) => d._id !== id));
     } catch (error) {
       console.error("Error deleting data:", error);
