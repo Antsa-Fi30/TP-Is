@@ -1,11 +1,11 @@
 import React from "react";
-import Euler from "../../components/Dashboard/Euler";
+import EulerUnite from "../../components/Dashboard/EulerUnite";
 
 const Dashboard = () => {
   return (
     <div>
       <div>
-        <Euler />
+        <EulerUnite />
       </div>
     </div>
   );

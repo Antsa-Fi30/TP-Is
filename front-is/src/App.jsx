@@ -10,7 +10,7 @@ import EditItem from "./pages/Items/EditItem";
 import Unite from "./pages/Unite/Unite";
 import EditUnite from "./pages/Unite/EditUnite";
 import AddUnite from "./pages/Unite/AddUnite";
-import Euler from "./components/Dashboard/Euler";
+import Euler from "./components/Dashboard/EulerUnite";
 
 const App = () => {
   return (
@@ -51,14 +51,6 @@ const App = () => {
                       className="block py-2 px-4 rounded hover:bg-gray-700"
                     >
                       Adresses
-                    </Link>
-                  </li>
-                  <li className="mb-2">
-                    <Link
-                      to="/graph"
-                      className="block py-2 px-4 rounded hover:bg-gray-700"
-                    >
-                      Graph
                     </Link>
                   </li>
                 </ul>
