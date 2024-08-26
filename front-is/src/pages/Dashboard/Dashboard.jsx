@@ -1,4 +1,4 @@
-import EulerUnite from "../../components/Dashboard/EulerPersons";
+import EulerUnite from "../../components/Dashboard/EulerUnite";
 import EulerPersons from "../../components/Dashboard/EulerPersons";
 
 const Dashboard = () => {
