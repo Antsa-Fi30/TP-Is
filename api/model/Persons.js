@@ -7,6 +7,7 @@ const PersonSchema = new mongoose.Schema({
   birthDate: { type: Date, required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
+  Units: { type: mongoose.Schema.Types.ObjectId, ref: "Unite" },
 });
 
 module.exports = mongoose.model("Persons", PersonSchema);

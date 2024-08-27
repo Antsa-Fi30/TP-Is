@@ -3,7 +3,7 @@ const Persons = require("../model/Persons");
 // Fonction pour obtenir toutes les personnes (Read)
 exports.getAllPersons = async (req, res) => {
   try {
-    const persons = await Persons.find();
+    const persons = await Persons.find().populate("Units");
     res.json(persons);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -13,7 +13,7 @@ exports.getAllPersons = async (req, res) => {
 // Fonction pour obtenir une personne pour modifier (Read)
 exports.getOnePerson = async (req, res) => {
   try {
-    const person = await Persons.findById(req.params.id);
+    const person = await Persons.findById(req.params.id).populate("Units");
     res.json(person);
   } catch (err) {
     res.status(400).json({ error: err.message });

@@ -1,4 +1,5 @@
 const Unite = require("../model/Unite");
+const Persons = require("../model/Persons");
 
 exports.createUnite = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ exports.createUnite = async (req, res) => {
 
 exports.getAllUnites = async (req, res) => {
   try {
-    const Unites = await Unite.find();
+    const Unites = await Unite.find().populate("Persons");
     res.json(Unites);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -26,6 +27,18 @@ exports.getOneUnite = async (req, res) => {
     res.json(uniteId);
   } catch (err) {
     res.status(400).json({ message: err.message });
+  }
+};
+
+exports.getUnitePersons = async (req, res) => {
+  try {
+    const persons = await Persons.find({ Units: req.params.id });
+    if (!persons) {
+      return res.status(404).json({ message: "Personnes non trouvée" });
+    }
+    res.json(persons);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 

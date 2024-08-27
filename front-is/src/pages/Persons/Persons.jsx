@@ -14,6 +14,18 @@ const Persons = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/persons");
+      console.log(response);
+      setData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+      setLoading(false);
+    }
+  };
+
+  const fetchUnit = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/unite/${id}`);
       setData(response.data);
       setLoading(false);
     } catch (error) {
@@ -24,6 +36,7 @@ const Persons = () => {
 
   useEffect(() => {
     fetchData();
+    fetchUnit();
   }, []);
 
   const handleDelete = async (id) => {
@@ -60,6 +73,7 @@ const Persons = () => {
           <tr>
             <th className="py-2 px-4 ">Nom</th>
             <th className="py-2 px-4 ">Qualité</th>
+            <th className="py-2 px-4 ">Units</th>
             <th className="py-2 px-4 ">Date de naissance(année,mois,jour)</th>
             <th className="py-2 px-4 ">Date de départ(année,mois,jour)</th>
             <th className="py-2 px-4 ">Date d'arrivé(année,mois,jour)</th>
@@ -74,6 +88,9 @@ const Persons = () => {
               </td>
               <td className="py-2 px-4 justify-center text-center">
                 {item.Quality}
+              </td>
+              <td className="py-2 px-4 justify-center text-center">
+                {item.Units ? item.Units.intitule : "N/A"}
               </td>
               <td className="py-2 px-4 justify-center text-center">
                 {formatDate(item.birthDate)}

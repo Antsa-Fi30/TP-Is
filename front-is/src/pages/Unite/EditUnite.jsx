@@ -51,8 +51,8 @@ const EditUnite = () => {
 
   return (
     <div>
-      <div className="flex flex-col justify-center py-5 sm:px-6 lg:px-8">
-        <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
+      <div className="flex flex-col justify-center sm:px-6 lg:px-8">
+        <div className="w-full">
           <div className="glass py-5 px-4 shadow sm:rounded-lg sm:px-10">
             <button id="button" onClick={() => navigate(-1)}>
               <span>
@@ -74,7 +74,7 @@ const EditUnite = () => {
             </button>
 
             <div className="my-3 textgrad font-bold text-3xl">
-              Ajouter une Unité
+              Modifier une Unité
             </div>
             <form method="POST" onSubmit={handleSubmit}>
               <div>

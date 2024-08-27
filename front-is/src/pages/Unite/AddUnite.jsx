@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddUnite.css";
+import ItemForm from "../Items/ItemForm";
 
 const AddUnite = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const AddUnite = () => {
 
   return (
     <div>
-      <div className="flex flex-col justify-center py-5 sm:px-6 lg:px-8">
+      <div className="flex flex-col justify-center sm:px-6 lg:px-8">
         <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="glass py-5 px-4 shadow sm:rounded-lg sm:px-10">
             <button id="button" onClick={() => navigate(-1)}>
